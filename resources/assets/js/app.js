@@ -19,7 +19,7 @@ window.Event = new Vue();
 Vue.component('navbar', require('./components/NavbarComponent.vue'))
 Vue.component('list-item', require('./components/ListsComponent.vue'))
 Vue.component('breadcrumb-component', require('./components/BreadcrumbComponent.vue'))
-Vue.component('table-component', require('./components/TableComponent.vue'))
+Vue.component('sparepart-component', require('./components/SparepartComponent.vue'))
 const app = new Vue({
     el: '#app'
 });

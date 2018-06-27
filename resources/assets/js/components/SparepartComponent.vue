@@ -1,11 +1,15 @@
 <template>
     <div class="container-fluid">
-        <h3><slot name="table-title"></slot></h3>
+        <h3>Sparepart</h3>
+        <input type="text" placeholder="Search" @change="getTable('/api/spareparts/'+search)" v-model="search"aria-label="Search"><br>
+        {{search}}
+
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th v-for="(key,value) in spareparts.data[0]">{{value}}</th>
+                    <th><a href="blabla"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus fa-fw"></i></button></a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,11 +21,11 @@
         </div> 
         <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="#" @click="getTable('/api/spareparts')"><<</a></li>
-    <li class="page-item"><a class="page-link" href="#" @click="getTable(spareparts.prev_page_url)"><</a></li>
-    <li class="page-item"><a class="page-link" href="#">{{spareparts.current_page}}</a></li>
-    <li class="page-item"><a class="page-link" href="#" @click="getTable(spareparts.next_page_url)">></a></li>
-    <li class="page-item"><a class="page-link" href="#" @click="getTable(spareparts.last_page_url)">>></a></li>
+    <li class="page-item"><button class="page-link" @click="getTable('/api/spareparts')"><<</button></li>
+    <li class="page-item"><button class="page-link" @click="getTable(spareparts.prev_page_url)"><</button></li>
+    <li class="page-item"><button class="page-link"> {{spareparts.current_page}}</button></li>
+    <li class="page-item"><button class="page-link" @click="getTable(spareparts.next_page_url)">></button></li>
+    <li class="page-item"><button class="page-link" @click="getTable(spareparts.last_page_url)">>></button></li>
   </ul>
 </nav>
     </div>
@@ -32,7 +36,8 @@
 export default {
   data: function() {
     return {
-      spareparts: []
+      spareparts: [],
+      search: ""
     };
   },
 

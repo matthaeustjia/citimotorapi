@@ -44,8 +44,8 @@ class SparepartController extends Controller
     public function show($id)
     {
         //
-        $sparepart = Sparepart::find($id);
-        //$sparepart = Sparepart::where('id', 'LIKE', '%'.$id.'%')->paginate(10);
+        //$sparepart = Sparepart::find($id);
+        $sparepart = Sparepart::where('id', 'LIKE', '%'.$id.'%')->paginate(10);
         if (!$sparepart) {
             return Response()->json([
                 'error' => [
@@ -56,7 +56,7 @@ class SparepartController extends Controller
 
 
         return Response()->json(
-            $spareparts,
+            $sparepart,
             200
         );
     }

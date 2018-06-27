@@ -16,7 +16,8 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api'], function () {
-    Route::resource('spareparts', 'Api\\SparepartController');
+    Route::resource('spareparts', 'Api\SparepartController');
+    Route::resource('customers', 'Api\CustomerController');
 });
 
 Auth::routes();

@@ -14004,7 +14004,7 @@ window.Event = new Vue();
 Vue.component('navbar', __webpack_require__(40));
 Vue.component('list-item', __webpack_require__(43));
 Vue.component('breadcrumb-component', __webpack_require__(45));
-Vue.component('table-component', __webpack_require__(47));
+Vue.component('sparepart-component', __webpack_require__(55));
 var app = new Vue({
   el: '#app'
 });
@@ -47374,7 +47374,7 @@ var render = function() {
     "nav",
     { staticClass: "navbar navbar-expand-md navbar-dark bg-dark mb-4" },
     [
-      _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+      _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
         _vm._v("CitiMotorBekasi")
       ]),
       _vm._v(" "),
@@ -47656,15 +47656,28 @@ if (false) {
 }
 
 /***/ }),
-/* 47 */
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(48)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(49)
+var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47681,7 +47694,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/TableComponent.vue"
+Component.options.__file = "resources/assets/js/components/SparepartComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47690,9 +47703,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-294c2f46", Component.options)
+    hotAPI.createRecord("data-v-c722cc6c", Component.options)
   } else {
-    hotAPI.reload("data-v-294c2f46", Component.options)
+    hotAPI.reload("data-v-c722cc6c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47703,7 +47716,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47738,11 +47751,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      spareparts: []
+      spareparts: [],
+      search: ""
     };
   },
 
@@ -47766,7 +47784,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 49 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47774,16 +47792,46 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _c("h3", [_vm._t("table-title")], 2),
+    _c("h3", [_vm._v("Sparepart")]),
     _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.search,
+          expression: "search"
+        }
+      ],
+      attrs: { type: "text", placeholder: "Search", "aria-label": "Search" },
+      domProps: { value: _vm.search },
+      on: {
+        change: function($event) {
+          _vm.getTable("/api/spareparts/" + _vm.search)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.search = $event.target.value
+        }
+      }
+    }),
+    _c("br"),
+    _vm._v("\n        " + _vm._s(_vm.search) + "\n\n        "),
     _c("div", { staticClass: "table-responsive" }, [
       _c("table", { staticClass: "table table-striped" }, [
         _c("thead", { staticClass: "thead-dark" }, [
           _c(
             "tr",
-            _vm._l(_vm.spareparts.data[0], function(key, value) {
-              return _c("th", [_vm._v(_vm._s(value))])
-            })
+            [
+              _vm._l(_vm.spareparts.data[0], function(key, value) {
+                return _c("th", [_vm._v(_vm._s(value))])
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ],
+            2
           )
         ]),
         _vm._v(" "),
@@ -47805,10 +47853,9 @@ var render = function() {
       _c("ul", { staticClass: "pagination justify-content-center" }, [
         _c("li", { staticClass: "page-item" }, [
           _c(
-            "a",
+            "button",
             {
               staticClass: "page-link",
-              attrs: { href: "#" },
               on: {
                 click: function($event) {
                   _vm.getTable("/api/spareparts")
@@ -47821,10 +47868,9 @@ var render = function() {
         _vm._v(" "),
         _c("li", { staticClass: "page-item" }, [
           _c(
-            "a",
+            "button",
             {
               staticClass: "page-link",
-              attrs: { href: "#" },
               on: {
                 click: function($event) {
                   _vm.getTable(_vm.spareparts.prev_page_url)
@@ -47836,17 +47882,16 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "page-item" }, [
-          _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-            _vm._v(_vm._s(_vm.spareparts.current_page))
+          _c("button", { staticClass: "page-link" }, [
+            _vm._v(" " + _vm._s(_vm.spareparts.current_page))
           ])
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "page-item" }, [
           _c(
-            "a",
+            "button",
             {
               staticClass: "page-link",
-              attrs: { href: "#" },
               on: {
                 click: function($event) {
                   _vm.getTable(_vm.spareparts.next_page_url)
@@ -47859,10 +47904,9 @@ var render = function() {
         _vm._v(" "),
         _c("li", { staticClass: "page-item" }, [
           _c(
-            "a",
+            "button",
             {
               staticClass: "page-link",
-              attrs: { href: "#" },
               on: {
                 click: function($event) {
                   _vm.getTable(_vm.spareparts.last_page_url)
@@ -47876,21 +47920,30 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [
+      _c("a", { attrs: { href: "blabla" } }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-success btn-sm", attrs: { type: "button" } },
+          [_c("i", { staticClass: "fas fa-plus fa-fw" })]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-294c2f46", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c722cc6c", module.exports)
   }
 }
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
