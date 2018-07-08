@@ -14002,9 +14002,9 @@ window.Vue = __webpack_require__(37);
 window.Event = new Vue();
 
 Vue.component('navbar', __webpack_require__(40));
-Vue.component('list-item', __webpack_require__(43));
 Vue.component('breadcrumb-component', __webpack_require__(45));
-Vue.component('sparepart-component', __webpack_require__(55));
+Vue.component('table-component', __webpack_require__(47));
+Vue.component('modal-component', __webpack_require__(55));
 var app = new Vue({
   el: '#app'
 });
@@ -47355,8 +47355,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   methods: {
-    onMenuClicked: function onMenuClicked() {
-      Event.$emit("sparepartsClicked");
+    onMenuClicked: function onMenuClicked(tablename) {
+      Event.$emit("menuClicked", tablename);
       this.isActive = true;
     }
   }
@@ -47391,21 +47391,46 @@ var render = function() {
             _c("li", { class: { "nav-item active": _vm.isActive } }, [
               _c(
                 "a",
-                { staticClass: "nav-link", on: { click: _vm.onMenuClicked } },
+                {
+                  staticClass: "nav-link",
+                  on: {
+                    click: function($event) {
+                      _vm.onMenuClicked("spareparts")
+                    }
+                  }
+                },
                 [_vm._v("Spare Parts")]
               )
             ]),
             _vm._v(" "),
             _c("li", { class: { "nav-item active": _vm.isActive } }, [
-              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                _vm._v("Customer")
-              ])
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  on: {
+                    click: function($event) {
+                      _vm.onMenuClicked("customers")
+                    }
+                  }
+                },
+                [_vm._v("Customer")]
+              )
             ]),
             _vm._v(" "),
             _c("li", { class: { "nav-item active": _vm.isActive } }, [
-              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                _vm._v("Customer")
-              ])
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  on: {
+                    click: function($event) {
+                      _vm.onMenuClicked("cars")
+                    }
+                  }
+                },
+                [_vm._v("Cars")]
+              )
             ]),
             _vm._v(" "),
             _c("li", { class: { "nav-item active": _vm.isActive } }, [
@@ -47469,100 +47494,8 @@ if (false) {
 }
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__(44)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ListsComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a48fba42", Component.options)
-  } else {
-    hotAPI.reload("data-v-a48fba42", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      { staticClass: "breadcrumb", attrs: { "aria-label": "breadcrumbs" } },
-      [
-        _c("ul", [
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Bulma")])]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Documentation")])
-          ]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Components")])]),
-          _vm._v(" "),
-          _c("li", { staticClass: "is-active" }, [
-            _c("a", { attrs: { href: "#", "aria-current": "page" } }, [
-              _vm._v("Breadcrumb")
-            ])
-          ])
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a48fba42", module.exports)
-  }
-}
-
-/***/ }),
+/* 43 */,
+/* 44 */,
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -47656,28 +47589,15 @@ if (false) {
 }
 
 /***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(56)
+var __vue_script__ = __webpack_require__(48)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(49)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47694,7 +47614,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/SparepartComponent.vue"
+Component.options.__file = "resources/assets/js/components/TableComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47703,9 +47623,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c722cc6c", Component.options)
+    hotAPI.createRecord("data-v-294c2f46", Component.options)
   } else {
-    hotAPI.reload("data-v-c722cc6c", Component.options)
+    hotAPI.reload("data-v-294c2f46", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47716,7 +47636,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47759,7 +47679,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      spareparts: [],
+      returnvalue: [],
+      tablename: "",
       search: ""
     };
   },
@@ -47767,8 +47688,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    Event.$on("sparepartsClicked", function () {
-      return _this.getTable("/api/spareparts");
+    Event.$on("menuClicked", function (tablename) {
+      return _this.getTable("/api/" + tablename, _this.tablename = tablename);
     });
   },
 
@@ -47777,14 +47698,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       axios.get(url).then(function (response) {
-        return _this2.spareparts = response.data;
+        return _this2.returnvalue = response.data;
       });
     }
   }
 });
 
 /***/ }),
-/* 57 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47803,11 +47724,11 @@ var render = function() {
           expression: "search"
         }
       ],
-      attrs: { type: "text", placeholder: "Search", "aria-label": "Search" },
+      attrs: { type: "text", placeholder: "Search" },
       domProps: { value: _vm.search },
       on: {
         change: function($event) {
-          _vm.getTable("/api/spareparts/" + _vm.search)
+          _vm.getTable("/api/" + _vm.tablename + "/" + _vm.search)
         },
         input: function($event) {
           if ($event.target.composing) {
@@ -47817,15 +47738,14 @@ var render = function() {
         }
       }
     }),
-    _c("br"),
-    _vm._v("\n        " + _vm._s(_vm.search) + "\n\n        "),
+    _vm._v(" "),
     _c("div", { staticClass: "table-responsive" }, [
       _c("table", { staticClass: "table table-striped" }, [
         _c("thead", { staticClass: "thead-dark" }, [
           _c(
             "tr",
             [
-              _vm._l(_vm.spareparts.data[0], function(key, value) {
+              _vm._l(_vm.returnvalue.data[0], function(key, value) {
                 return _c("th", [_vm._v(_vm._s(value))])
               }),
               _vm._v(" "),
@@ -47837,19 +47757,31 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.spareparts.data, function(sparepart) {
+          _vm._l(_vm.returnvalue.data, function(returnvalue) {
             return _c(
               "tr",
-              _vm._l(sparepart, function(value) {
-                return _c("td", [_vm._v(_vm._s(value))])
-              })
+              [
+                _vm._l(returnvalue, function(value) {
+                  return _c("td", [_vm._v(_vm._s(value))])
+                }),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn-warning xs" }, [
+                  _vm._v("Edit")
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn-danger xs" }, [
+                  _vm._v("Remove")
+                ])
+              ],
+              2
             )
           })
         )
       ])
     ]),
     _vm._v(" "),
-    _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+    _c("nav", { attrs: { "aria-label": "Page navifation example" } }, [
       _c("ul", { staticClass: "pagination justify-content-center" }, [
         _c("li", { staticClass: "page-item" }, [
           _c(
@@ -47858,7 +47790,7 @@ var render = function() {
               staticClass: "page-link",
               on: {
                 click: function($event) {
-                  _vm.getTable("/api/spareparts")
+                  _vm.getTable(_vm.returnvalue.links.first)
                 }
               }
             },
@@ -47866,41 +47798,50 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("li", { staticClass: "page-item" }, [
-          _c(
-            "button",
-            {
-              staticClass: "page-link",
-              on: {
-                click: function($event) {
-                  _vm.getTable(_vm.spareparts.prev_page_url)
-                }
-              }
-            },
-            [_vm._v("<")]
-          )
-        ]),
+        _vm.returnvalue.links.prev
+          ? _c("li", { staticClass: "page-item" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "page-link",
+                  on: {
+                    click: function($event) {
+                      _vm.getTable(_vm.returnvalue.links.prev)
+                    }
+                  }
+                },
+                [_vm._v("<")]
+              )
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("li", { staticClass: "page-item" }, [
           _c("button", { staticClass: "page-link" }, [
-            _vm._v(" " + _vm._s(_vm.spareparts.current_page))
+            _vm._v(" " + _vm._s(_vm.returnvalue.meta.current_page))
           ])
         ]),
         _vm._v(" "),
-        _c("li", { staticClass: "page-item" }, [
-          _c(
-            "button",
-            {
-              staticClass: "page-link",
-              on: {
-                click: function($event) {
-                  _vm.getTable(_vm.spareparts.next_page_url)
+        _c(
+          "li",
+          {
+            staticClass: "page-item",
+            attrs: { disabled: _vm.returnvalue.links.next == null }
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "page-link",
+                on: {
+                  click: function($event) {
+                    _vm.getTable(_vm.returnvalue.links.next)
+                  }
                 }
-              }
-            },
-            [_vm._v(">")]
-          )
-        ]),
+              },
+              [_vm._v(">")]
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("li", { staticClass: "page-item" }, [
           _c(
@@ -47909,7 +47850,7 @@ var render = function() {
               staticClass: "page-link",
               on: {
                 click: function($event) {
-                  _vm.getTable(_vm.spareparts.last_page_url)
+                  _vm.getTable(_vm.returnvalue.links.last)
                 }
               }
             },
@@ -47926,13 +47867,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("th", [
-      _c("a", { attrs: { href: "blabla" } }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-success btn-sm", attrs: { type: "button" } },
-          [_c("i", { staticClass: "fas fa-plus fa-fw" })]
-        )
-      ])
+      _c("button", { staticClass: "btn-success" }, [_vm._v("Add")])
     ])
   }
 ]
@@ -47941,7 +47876,97 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c722cc6c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-294c2f46", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ModalComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-465fd2c7", Component.options)
+  } else {
+    hotAPI.reload("data-v-465fd2c7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-465fd2c7", module.exports)
   }
 }
 

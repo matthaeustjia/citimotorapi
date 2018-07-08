@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Sparepart extends JsonResource
+class Car extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,13 @@ class Sparepart extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'type' => $this->type,
-            'car' => $this->car,
-            'sellingprice' => $this->sellingPrice,
-            'buyingprice' => $this->buyingPrice
+            'customerid' => $this->customer_id,
+            'customer name' => $this->customer->name,
+            'VIN' => $this->VIN,
+            'carbrand' => $this->carbrand,
+            'carmodel' => $this->carmodel,
+            'fueltype' => $this->fueltype,
+            
         ];
     }
 }

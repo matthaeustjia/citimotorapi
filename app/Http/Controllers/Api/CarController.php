@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Sparepart;
-use App\Http\Resources\Sparepart as SparepartResource;
+use App\Http\Resources\Car as CarResource;
+use App\Car;
+use App\Customer;
 
-class SparepartController extends Controller
+class CarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +19,12 @@ class SparepartController extends Controller
     public function index()
     {
         //
-        $spareparts = Sparepart::paginate(10);
-        return SparepartResource::collection($spareparts);
+        //$cars = DB::table('cars')
+        //->select('cars.id', 'customerid', 'VIN', 'customers.name', 'carbrand', 'carmodel', 'fueltype')
+        //->leftJoin('customers', 'cars.customerid', '=', 'customers.id')
+        //->paginate(10);
+        $cars = Car::with('customer')->paginate(10);
+        return CarResource::collection($cars);
     }
 
     /**
@@ -41,11 +46,14 @@ class SparepartController extends Controller
      */
     public function show($id)
     {
-        $sparepart = DB::table('spareparts')
-        ->where('id', 'like', '%'.$id.'%')
+        $cars = Car::with('customer')
+        ->where('id', 'like', '%' . $id . '%')
+        ->orWhere('name', 'like', '%' . $id . '%')
         ->paginate(10);
-        return SparepartResource::collection($sparepart);
+        
+        return CarResource::collection($cars);
     }
+
 
     /**
      * Update the specified resource in storage.

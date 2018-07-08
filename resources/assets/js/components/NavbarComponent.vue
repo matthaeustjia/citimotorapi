@@ -7,13 +7,13 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav nav-tabs mr-auto">
                         <li :class="{'nav-item active': isActive}">
-                            <a class="nav-link" @click="onMenuClicked">Spare Parts</a>
+                            <a class="nav-link" @click="onMenuClicked('spareparts')">Spare Parts</a>
                         </li>
                         <li :class="{'nav-item active': isActive}">
-                            <a class="nav-link" href="#">Customer</a>
+                            <a class="nav-link" @click="onMenuClicked('customers')">Customer</a>
                         </li>
                         <li :class="{'nav-item active': isActive}">
-                            <a class="nav-link" href="#">Customer</a>
+                            <a class="nav-link" @click="onMenuClicked('cars')">Cars</a>
                         </li>
                         <li :class="{'nav-item active': isActive}">
                             <a class="nav-link" href="#">Customer</a>
@@ -39,8 +39,8 @@ export default {
     };
   },
   methods: {
-    onMenuClicked() {
-      Event.$emit("sparepartsClicked");
+    onMenuClicked(tablename) {
+      Event.$emit("menuClicked", tablename);
       this.isActive = true;
     }
   }

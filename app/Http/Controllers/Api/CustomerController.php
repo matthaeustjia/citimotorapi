@@ -4,7 +4,11 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Customer;
+use App\Car;
+use App\Http\Resources\CustomerCollection;
+use App\Http\Resources\Customer as CustomerResource;
 
 class CustomerController extends Controller
 {
@@ -16,11 +20,8 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $customers = Customer::paginate(10);
-        return Response()->json(
-            $customers,
-            200
-        );
+        $customers = Customer::with('car')->paginate(10);
+        return CustomerResource::collection($customers);
     }
 
     /**
@@ -42,20 +43,10 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
-        $customer = Customer::find($id);
-        if (!$customer) {
-            return Response()-json([
-                'error' => [
-                    'message' => 'Customer does not exist'
-                ]
-                ], 404);
-        }
-
-        return Response()->json(
-            $customer,
-            200
-        );
+        $customers = Customer::with('car')
+            ->where('name', 'like', '%' . $id . '%')
+            ->paginate(10);
+        return CustomerResource::collection($customers);
     }
 
     /**

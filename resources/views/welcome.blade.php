@@ -11,7 +11,7 @@
     <body>
         <div id="app">
             <navbar></navbar>
-            <sparepart-component></sparepart-component>
+            <table-component></table-component>
         </div>
         <script src="{{asset('js/app.js')}}"></script>
     </body>
