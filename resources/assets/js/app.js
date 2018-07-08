@@ -17,9 +17,7 @@ window.Vue = require('vue');
 window.Event = new Vue();
 
 Vue.component('navbar', require('./components/NavbarComponent.vue'))
-Vue.component('breadcrumb-component', require('./components/BreadcrumbComponent.vue'))
 Vue.component('table-component', require('./components/TableComponent.vue'))
-Vue.component('modal-component', require('./components/ModalComponent.vue'))
 const app = new Vue({
     el: '#app'
 });

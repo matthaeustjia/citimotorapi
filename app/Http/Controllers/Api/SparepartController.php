@@ -31,6 +31,25 @@ class SparepartController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate(request(), [
+            'id' => 'required|unique:spareparts',
+            'name' => 'required',
+            'type' => 'required',
+            'car' => 'required',
+            'sellingprice' => 'required',
+            'buyingprice' => 'required',
+        ]);
+
+        $sparepart = new Sparepart();
+        $sparepart->id = request('id');
+        $sparepart->name = request('name');
+        $sparepart->type = request('type');
+        $sparepart->car = request('car');
+        $sparepart->sellingprice = request('sellingprice');
+        $sparepart->buyingprice = request('buyingprice');
+        $sparepart->save();
+
+        return ['message' => 'Sparepart Added'];
     }
 
     /**

@@ -1,13 +1,14 @@
 <template>
     <div class="container-fluid">
-        <h3>Sparepart</h3>
+        <modal :tablename="tablename"></modal>
+        <h3>{{tablename}}</h3>
         <input type="text" placeholder="Search" @change="getTable('/api/'+tablename+'/'+search)" v-model="search">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th v-for="(key,value) in returnvalue.data[0]">{{value}}</th>
-                               <th> <button class="btn-success">Add</button></th>
+                               <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,8 @@
 
 
 <script>
+import Modal from "./modalcomponents/MasterComponent.vue";
+
 export default {
   data: function() {
     return {
@@ -51,7 +54,8 @@ export default {
     getTable: function(url) {
       axios.get(url).then(response => (this.returnvalue = response.data));
     }
-  }
+  },
+  components: { modal: Modal }
 };
 </script>
 
